@@ -6,13 +6,13 @@
             <div class="card my-4">
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                        <h6 class="text-white text-capitalize ps-3">Users table </h6>
+                        <h6 class="text-white text-capitalize ps-3">{{__('message.Users_table')}} </h6>
                     </div>
                 </div>
                 <form action="{{route('user.search')}}" method="GET">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center mt-2 m-xxl-3">
                         <div class="input-group input-group-outline">
-                            <label class="form-label">Type here...</label>
+                            <label class="form-label">{{__('message.Type_here')}}</label>
                             <input type="text" name="search" class="form-control">
                         </div>
                     </div>
@@ -23,11 +23,11 @@
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Users</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                                <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Edit</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{__('message.Users')}}</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">{{__('message.Role')}}</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{__('message.status')}}</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{__('message.Employed')}}</th>
+                                <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{__('message.Edit')}}</th>
 
                             </tr>
                             </thead>
@@ -51,7 +51,7 @@
 
                                 </td>
                                 <td class="align-middle text-center text-sm">
-                                    <span class="badge badge-sm bg-gradient-success">Online</span>
+                                    <span class="badge badge-sm bg-gradient-success">{{__('message.Online')}}</span>
                                 </td>
                                 <td class="align-middle text-center">
                                     <span class="text-secondary text-xs font-weight-bold">{{$users[$i]->created_at}}</span>
@@ -60,7 +60,7 @@
 
 
                                     <a href="{{route('user.edit',$users[$i]->id)}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                        Edit
+                                        {{__('message.Edit')}}
                                     </a>
                                 </td>
                                 <td>
@@ -74,9 +74,9 @@
                                         @method('PUT')
                                         <button class="btn {{$users[$i]->is_active ? 'btn-danger' :'btn-success'}}" type="submit">
                                             @if($users[$i]->is_active)
-                                                Ban
+                                                {{__('message.Ban')}}
                                             @else
-                                                UnBan
+                                                {{__('message.UnBan')}}
                                             @endif
                                         </button>
                                     </form>

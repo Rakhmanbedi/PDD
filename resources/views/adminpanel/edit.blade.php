@@ -42,13 +42,13 @@
                                             @method('PUT')
                                             <button class="btn {{$user->is_active ? 'btn btn-outline-primary me-1 flex-grow-1' :'btn btn-outline-success me-1 flex-grow-1'}}" type="submit">
                                                 @if($user->is_active)
-                                                    Ban
+                                                    {{__('message.Ban')}}
+
                                                 @else
-                                                    UnBan
+                                                    {{__('message.UnBan')}}
                                                 @endif
                                             </button>
                                         </form>
-                                        <button type="button" class="btn btn-primary flex-grow-1">Follow</button>
                                     </div>
 
 

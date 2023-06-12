@@ -29,6 +29,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user){
+        $this->authorize('viewAny',  $user);
         $user->update([
             'role_id'=>$request->role_id,
 
@@ -49,4 +50,5 @@ class UserController extends Controller
         ]);
         return back();
     }
+
 }

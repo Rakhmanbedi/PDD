@@ -119,9 +119,16 @@
                     <div class="collapse navbar-collapse" id="navigation">
                         <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item" style="margin-left: 430px">
-                                <a class="btn btn-sm mb-0 me-1 bg-gradient-dark">Hello, young driver! Get your driving license with us! 😉</a>
+                                <a class="btn btn-sm mb-0 me-1 bg-gradient-dark">{{__('message.Hello, young driver! Get your driving license with us!')}} 😉</a>
                             </li>
                         </ul>
+                        <div class="">
+                            @foreach( config('app.languages') as $ln => $lang)
+                                <a class="" href="{{route('switch.lang', $ln)}}" >
+                                    {{$lang}}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -138,7 +145,7 @@
                     <div class="card z-index-0 fadeIn3 fadeInBottom">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Sign in</h4>
+                                <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">{{ __('message.Sign in')  }}</h4>
                                 <div class="row mt-3">
                                     <div class="col-2 text-center ms-auto">
                                         <a class="btn btn-link px-3" href="https://www.facebook.com/profile.php?id=100046944616164">
@@ -162,23 +169,23 @@
                             <form role="form" class="text-start" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="input-group input-group-outline my-3">
-                                    <label class="form-label">Email</label>
+                                    <label class="form-label">{{__('message.Email')}}</label>
                                     <input type="email" name="email" class="form-control @error('email') is-invalid @enderror">
                                 </div>
                                 <div class="input-group input-group-outline mb-3">
-                                    <label class="form-label">Password</label>
+                                    <label class="form-label">{{__('message.Password')}}</label>
                                     <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
                                 </div>
                                 <div class="form-check form-switch d-flex align-items-center mb-3">
                                     <input class="form-check-input" type="checkbox" id="rememberMe">
-                                    <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
+                                    <label class="form-check-label mb-0 ms-2" for="rememberMe">{{__('message.Remember Me')}}</label>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
+                                    <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">{{ __('message.Sign in')  }}</button>
                                 </div>
                                 <p class="mt-4 text-sm text-center">
-                                    Don't have an account?
-                                    <a href="{{route('register')}}" class="text-primary text-gradient font-weight-bold">Sign up</a>
+                                    {{ __('message.Don,t have an account?')  }}
+                                    <a href="{{route('register')}}" class="text-primary text-gradient font-weight-bold">{{ __('message.Sign up')  }}</a>
                                 </p>
                             </form>
                         </div>
