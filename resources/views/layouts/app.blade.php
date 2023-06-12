@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('1/assets/img/apple-icon.png')}}">
     <link rel="icon" type="image/png" href="{{asset('1/assets/img/favicon.png')}}">
     <title>
-        OBL.KZ
+        PDD.KZ
     </title>
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -21,6 +21,7 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{asset('1/assets/css/material-dashboard.css?v=3.0.0')}}" rel="stylesheet" />
 
+
 </head>
 {{--        -----------------------------------------------------------------------------------------------}}
 
@@ -29,8 +30,8 @@
             <div class="sidenav-header">
                 <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
                 <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
-                    <img src="{{asset('1/assets/img/logo-ct.png')}}" class="navbar-brand-img h-100" alt="main_logo">
-                    <span class="ms-1 font-weight-bold text-white">PDD.KZ</span>
+                    <img src="https://stan.kz/uploads/106eae1034a7aaa49b316ae85d743242.png" class="navbar-brand-img h-100" alt="main_logo">
+                    <span class="ms-1 font-weight-bold text-white">DRIVE   WISE</span>
                 </a>
             </div>
             <hr class="horizontal light mt-0 mb-2">
@@ -41,42 +42,74 @@
                             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="material-icons opacity-10">school</i>
                             </div>
-                            <span class="nav-link-text ms-1">Education</span>
+                            <span class="nav-link-text ms-1">{{__('message.Education')}}</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white active bg-gradient-primary" href="{{route('user')}}">
-                            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="material-icons opacity-10">table_view</i>
-                            </div>
-                            <span class="nav-link-text ms-1">Users</span>
-                        </a>
-                    </li>
+
+
+                    @can('viewAny', App\Models\User::class)
+                        <li class="nav-item">
+                            <a class="nav-link text-white active bg-gradient-primary" href="{{route('user')}}">
+                                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="material-icons opacity-10">table_view</i>
+                                </div>
+                                <span class="nav-link-text ms-1">{{__('message.User list')}}</span>
+                            </a>
+                        </li>
+                    @endcan
+
                     <li class="nav-item">
                         <a class="nav-link text-white active bg-gradient-primary " href="{{route('instruction')}}">
                             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="material-icons opacity-10">local_library</i>
                             </div>
-                            <span class="nav-link-text ms-1">Instruction</span>
+                            <span class="nav-link-text ms-1">{{__('message.Instruction')}}</span>
                         </a>
                     </li>
+                    @can( 'create', App\Models\Test::class )
+                        <li class="nav-item">
+                            <a class="nav-link text-white " href="{{route('add_questions')}}">
+                                <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                    <i class="material-icons opacity-10">add</i>
+                                </div>
+                                <span class="nav-link-text ms-1">{{__('message.Add questions')}}</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can( 'create', App\Models\Test::class )
                     <li class="nav-item">
-                        <a class="nav-link text-white " href="./pages/notifications.html">
+                        <a class="nav-link text-white " href="{{route('add_answers')}}">
                             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="material-icons opacity-10">notifications</i>
+                                <i class="material-icons opacity-10">edit_note</i>
                             </div>
-                            <span class="nav-link-text ms-1">Notifications</span>
+                            <span class="nav-link-text ms-1">{{__('message.Add answers')}}</span>
+                        </a>
+                    </li>
+                    @endcan
+                    <li class="nav-item">
+                        <a class="nav-link text-white " href="{{route('communication')}}">
+                            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="material-icons opacity-10">groups</i>
+                            </div>
+                            <span class="nav-link-text ms-1">{{__('message.Сommunication')}}
+                                <span class="badge bg-primary badge-number">
+{{--                                    @if(\Illuminate\Support\Facades\Auth::user()->id != $message->user_id )--}}
+{{--                                        {{count($message)}}--}}
+{{--                                    @endif--}}
+                                    9+
+                                </span>
+                            </span>
                         </a>
                     </li>
                     <li class="nav-item mt-3">
-                        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+                        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">{{__('message.Account_page')}}</h6>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white " href="{{route('profile')}}">
                             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="material-icons opacity-10">person</i>
                             </div>
-                            <span class="nav-link-text ms-1">Profile</span>
+                            <span class="nav-link-text ms-1">{{__('message.Profile')}}</span>
                         </a>
                     </li>
                 </ul>
@@ -85,7 +118,7 @@
                 <div class="mx-3">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button class="btn bg-gradient-primary mt-4 w-100" type="submit">Logout</button>
+                        <button class="btn bg-gradient-primary mt-4 w-100" type="submit">{{ __('message.Logout') }}</button>
                     </form>
 
                 </div>
@@ -98,7 +131,7 @@
                     <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                             <div class="input-group input-group-outline">
-                                <label class="form-label">Type here...</label>
+                                <label class="form-label">{{__('message.Type_here')}}</label>
                                 <input type="text" class="form-control">
                             </div>
                         </div>
@@ -131,86 +164,26 @@
                                     <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
                                 </a>
                             </li>
-                            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                                <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+{{--                            <li><a href=""><i class="fa fa-bell cursor-pointer"></i></a></li>--}}
+                            <li class="nav-item px-3 d-flex align-items-center">
+                                <a href="{{route('balance')}}" class="nav-link text-body p-0">
                                     <i class="fa fa-bell cursor-pointer"></i>
                                 </a>
-                                <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                                    <li class="mb-2">
-                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                            <div class="d-flex py-1">
-                                                <div class="my-auto">
-                                                    <img src="./assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="text-sm font-weight-normal mb-1">
-                                                        <span class="font-weight-bold">New message</span> from Laur
-                                                    </h6>
-                                                    <p class="text-xs text-secondary mb-0">
-                                                        <i class="fa fa-clock me-1"></i>
-                                                        13 minutes ago
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="mb-2">
-                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                            <div class="d-flex py-1">
-                                                <div class="my-auto">
-                                                    <img src="./assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="text-sm font-weight-normal mb-1">
-                                                        <span class="font-weight-bold">New album</span> by Travis Scott
-                                                    </h6>
-                                                    <p class="text-xs text-secondary mb-0">
-                                                        <i class="fa fa-clock me-1"></i>
-                                                        1 day
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item border-radius-md" href="javascript:;">
-                                            <div class="d-flex py-1">
-                                                <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
-                                                    <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                        <title>credit-card</title>
-                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
-                                                                <g transform="translate(1716.000000, 291.000000)">
-                                                                    <g transform="translate(453.000000, 454.000000)">
-                                                                        <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
-                                                                        <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
-                                                                    </g>
-                                                                </g>
-                                                            </g>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                                <div class="d-flex flex-column justify-content-center">
-                                                    <h6 class="text-sm font-weight-normal mb-1">
-                                                        Payment successfully completed
-                                                    </h6>
-                                                    <p class="text-xs text-secondary mb-0">
-                                                        <i class="fa fa-clock me-1"></i>
-                                                        2 days
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
+                                <div class="">
+                                    @foreach( config('app.languages') as $ln => $lang)
+                                        <a class="" href="{{route('switch.lang', $ln)}}" >
+                                            {{$lang}}
+                                        </a>
+                                    @endforeach
+                                </div>
                         </ul>
                     </div>
                 </div>
             </nav>
-            @if (session('sms'))
+            @if (session('sss'))
                 <div class="alert alert-success" role="alert">
-                    {{ session('sms') }}
+                    {{ session('sss') }}
                 </div>
             @endif
 
@@ -229,36 +202,7 @@
                     @yield('content')
                 </div>
             </main>
-            <footer class="footer py-4  ">
-                <div class="container-fluid">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-4 mb-lg-0 mb-4">
-                            <div class="copyright text-center text-sm text-muted text-lg-start">
-                                © <script>
-                                    document.write(new Date().getFullYear())
-                                </script>,
-                                made with <i class="fa fa-heart"></i> by
-                                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                                for a better web.
-                            </div>
-                        </div>
 
-                        <div class="col-lg-3">
-                            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
     </main>
     </body>
@@ -269,8 +213,8 @@
         <div class="card shadow-lg">
             <div class="card-header pb-0 pt-3">
                 <div class="float-start">
-                    <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-                    <p>See our dashboard options.</p>
+                    <h5 class="mt-3 mb-0">Drive Wise</h5>
+                    <p></p>
                 </div>
                 <div class="float-end mt-4">
                     <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
